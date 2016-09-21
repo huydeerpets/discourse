@@ -53,17 +53,21 @@
       <meta itemprop='interactionCount' content='UserLikes:<%= post.like_count %>'>
       <meta itemprop='interactionCount' content='UserComments:<%= post.reply_count %>'>
       <hr>
-    
+    <span itemtype='http://schema.org/Review' itemscope=''>
+		<span itemtype='http://schema.org/Thing' itemscope='' itemprop='itemReviewed'>
+			<span itemprop='name'><%= @topic_view.topic %></span>Rating by 
+		</span>
+		<span itemtype='http://schema.org/Person' itemscope='' itemprop='author'>
+			<span itemprop='name'><%= u.username %></span>
+		</span>
+		<span itemtype='http://schema.org/Rating' itemscope='' itemprop='reviewRating'>:
+		<span itemprop='ratingValue'><% @topic_view.topic.custom_fields['average_rating'] %></span>
+			<span itemprop='bestRating'>/10</span>
+		</span>
+		<span itemtype='http://schema.org/Organization' itemscope='' itemprop='publisher'><meta content='LensShots.com' itemprop='name'></span>
+	</span>
   </div>
-  <span itemtype="http://schema.org/Review" itemscope="">
-	<span itemtype="http://schema.org/Thing" itemscope="" itemprop="itemReviewed">
-	<span itemprop="name"><%= @topic_view.topic %></span>Rating by </span>
-	<span itemtype="http://schema.org/Person" itemscope="" itemprop="author">
-	<span itemprop="name"><%= u.username %></span></span>
-	<span itemtype="http://schema.org/Rating" itemscope="" itemprop="reviewRating">:
-	<span itemprop="ratingValue"><% @topic_view.topic.custom_fields["average_rating"] %></span>
-	<span itemprop="bestRating">/10</span></span>
-	<span itemtype="http://schema.org/Organization" itemscope="" itemprop="publisher"><meta content="LensShots.com" itemprop="name"></span></span>
+	
 	<% end %>
 <% end %>
 
